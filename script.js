@@ -33,6 +33,47 @@ function operate (n, m, operator)
         return divide(n, m);
 }
 
+function updateDisplay (givenInput)
+{
+    if (givenInput == "*" || givenInput == "/" || givenInput == "+" || givenInput == "-")
+    {
+        if (display_val == "")
+            display_val += answer;
+        display_val = display_val + " " + givenInput + " ";
+    }    
+    else
+        display_val += givenInput;
+    
+    const displayInput = document.getElementById('input');
+    displayInput.textContent = display_val;
+}
+
+function updateResult (givenInput)
+{
+    answer = givenInput;
+    const displayOutput = document.getElementById('output');
+    displayOutput.textContent = givenInput;
+}
+
+function clearAll ()
+{
+    display_val = "";
+    updateDisplay("");
+    updateResult("");
+}
+
+function determineEquation ()
+{
+    listTerms = display_val.split(" ");
+    console.log(listTerms);
+    let n = parseInt(listTerms[0]);
+    let m = parseInt(listTerms[2]);
+    let operator = listTerms[1];
+    updateResult(operate(n, m, operator));
+    display_val = "";
+}
+
+
 const oneKey = document.getElementById("1");
 const twoKey = document.getElementById("2");
 const threeKey = document.getElementById("3");

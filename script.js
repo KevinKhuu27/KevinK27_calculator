@@ -37,6 +37,7 @@ function updateDisplay (givenInput)
 {
     if (givenInput == "*" || givenInput == "/" || givenInput == "+" || givenInput == "-")
     {
+        checkChaining();
         if (display_val == "")
             display_val += answer;
         display_val = display_val + " " + givenInput + " ";
@@ -62,7 +63,7 @@ function clearAll ()
     updateResult("");
 }
 
-function determineEquation ()
+function calculate ()
 {
     listTerms = display_val.split(" ");
     console.log(listTerms);
@@ -73,6 +74,13 @@ function determineEquation ()
     display_val = "";
 }
 
+function checkChaining ()
+{
+    listTerms = display_val.split(" ");
+    console.log(listTerms);
+    if (listTerms.length >= 3)
+        calculate();
+}
 
 const oneKey = document.getElementById("1");
 const twoKey = document.getElementById("2");
@@ -114,4 +122,4 @@ plusKey.addEventListener('click', () => updateDisplay("+"));
 minusKey.addEventListener('click', () => updateDisplay("-"));
 
 clearKey.addEventListener('click', () => clearAll());
-equalKey.addEventListener('click', () => determineEquation());
+equalKey.addEventListener('click', () => calculate());

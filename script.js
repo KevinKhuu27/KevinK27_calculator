@@ -30,10 +30,10 @@ function operate (n, m, operator)
     else if (operator == "*")
         return multiply(n, m);
     else if (operator == "/")
-        return divide(n, m);
+        return divide(n, m).toFixed(3);
 }
 
-function updateDisplay (givenInput)
+function getInput (givenInput)
 {
     if (givenInput == "*" || givenInput == "/" || givenInput == "+" || givenInput == "-")
     {
@@ -44,7 +44,12 @@ function updateDisplay (givenInput)
     }    
     else
         display_val += givenInput;
-    
+
+    updateDisplay();
+}
+
+function updateDisplay ()
+{
     const displayInput = document.getElementById('input');
     displayInput.textContent = display_val;
 }
@@ -61,6 +66,8 @@ function clearAll ()
     display_val = "";
     updateDisplay("");
     updateResult("");
+    display_val = "";
+    answer = "";
 }
 
 function calculate ()
@@ -105,21 +112,21 @@ const clearKey = document.getElementById("clear");
 const ansKey = document.getElementById("ans");
 const equalKey = document.getElementById("=");
 
-oneKey.addEventListener('click', () => updateDisplay("1"));
-twoKey.addEventListener('click', () => updateDisplay("2"));
-threeKey.addEventListener('click', () => updateDisplay("3"));
-fourKey.addEventListener('click', () => updateDisplay("4"));
-fiveKey.addEventListener('click', () => updateDisplay("5"));
-sixKey.addEventListener('click', () => updateDisplay("6"));
-sevenKey.addEventListener('click', () => updateDisplay("7"));
-eightKey.addEventListener('click', () => updateDisplay("8"));
-nineKey.addEventListener('click', () => updateDisplay("9"));
-zeroKey.addEventListener('click', () => updateDisplay("0"));
+oneKey.addEventListener('click', () => getInput("1"));
+twoKey.addEventListener('click', () => getInput("2"));
+threeKey.addEventListener('click', () => getInput("3"));
+fourKey.addEventListener('click', () => getInput("4"));
+fiveKey.addEventListener('click', () => getInput("5"));
+sixKey.addEventListener('click', () => getInput("6"));
+sevenKey.addEventListener('click', () => getInput("7"));
+eightKey.addEventListener('click', () => getInput("8"));
+nineKey.addEventListener('click', () => getInput("9"));
+zeroKey.addEventListener('click', () => getInput("0"));
 
-xKey.addEventListener('click', () => updateDisplay("*"));
-divKey.addEventListener('click', () => updateDisplay("/"));
-plusKey.addEventListener('click', () => updateDisplay("+"));
-minusKey.addEventListener('click', () => updateDisplay("-"));
+xKey.addEventListener('click', () => getInput("*"));
+divKey.addEventListener('click', () => getInput("/"));
+plusKey.addEventListener('click', () => getInput("+"));
+minusKey.addEventListener('click', () => getInput("-"));
 
 clearKey.addEventListener('click', () => clearAll());
 equalKey.addEventListener('click', () => calculate());

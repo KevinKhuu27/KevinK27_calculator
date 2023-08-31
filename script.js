@@ -30,6 +30,8 @@ function operate (n, m, operator)
     else if (operator == "*")
         return multiply(n, m);
     else if (operator == "/")
+        if (m == 0)
+            return "Error";
         return divide(n, m).toFixed(3);
 }
 
@@ -72,21 +74,41 @@ function clearAll ()
 
 function calculate ()
 {
-    listTerms = display_val.split(" ");
-    console.log(listTerms);
-    let n = parseInt(listTerms[0]);
-    let m = parseInt(listTerms[2]);
-    let operator = listTerms[1];
-    updateResult(operate(n, m, operator));
+    if (!validateInput())
+        updateResult("Error");
+    else 
+    {
+        listTerms = display_val.split(" ");
+        let n = parseInt(listTerms[0]);
+        let m = parseInt(listTerms[2]);
+        let operator = listTerms[1];
+        updateResult(operate(n, m, operator));
+    }
     display_val = "";
+    answer = "";
 }
 
 function checkChaining ()
 {
     listTerms = display_val.split(" ");
-    console.log(listTerms);
     if (listTerms.length >= 3)
         calculate();
+}
+
+function validateInput ()
+{
+    listTerms = display_val.split(" ");
+    console.log(listTerms)
+    if (!(Number.isInteger(parseInt(listTerms[0]))))
+    {
+        console.log("test");
+        return false;
+    }
+    if (listTerms.length == 1)
+        display_val += " + 0";
+    if (listTerms[2] == "")
+        return false;
+    return true;
 }
 
 const oneKey = document.getElementById("1");

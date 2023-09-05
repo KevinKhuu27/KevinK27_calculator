@@ -100,7 +100,6 @@ function checkChaining ()
 function validateInput ()
 {
     listTerms = display_val.split(" ");
-    console.log(listTerms)
     if (!(Number.isInteger(parseInt(listTerms[0]))))
         return false;
     if (listTerms.length == 1)
@@ -113,6 +112,15 @@ function validateInput ()
 function answerPressed ()
 {
     display_val += answer;
+    updateDisplay();
+}
+
+function deleteInput ()
+{
+    if (display_val.charAt(display_val.length - 1) == " ")
+        display_val = display_val.substring(0, display_val.length - 3);
+    else
+        display_val = display_val.substring(0, display_val.length - 1);
     updateDisplay();
 }
 
@@ -159,3 +167,5 @@ clearKey.addEventListener('click', () => clearAll());
 equalKey.addEventListener('click', () => calculate());
 
 ansKey.addEventListener('click', () => answerPressed());
+
+delKey.addEventListener('click', () => deleteInput());

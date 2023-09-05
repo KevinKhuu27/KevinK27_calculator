@@ -30,9 +30,11 @@ function operate (n, m, operator)
     else if (operator == "*")
         return multiply(n, m);
     else if (operator == "/")
+    {
         if (m == 0)
             return "Error";
         return divide(n, m).toFixed(3);
+    }
 }
 
 function getInput (givenInput)
@@ -82,10 +84,11 @@ function calculate ()
         let n = parseInt(listTerms[0]);
         let m = parseInt(listTerms[2]);
         let operator = listTerms[1];
-        updateResult(operate(n, m, operator));
+        display_val = operate(n,m,operator);
+        updateResult(display_val);
     }
+    answer = display_val;
     display_val = "";
-    answer = "";
 }
 
 function checkChaining ()

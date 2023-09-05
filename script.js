@@ -60,7 +60,6 @@ function updateDisplay ()
 
 function updateResult (givenInput)
 {
-    answer = givenInput;
     const displayOutput = document.getElementById('output');
     displayOutput.textContent = givenInput;
 }
@@ -103,15 +102,18 @@ function validateInput ()
     listTerms = display_val.split(" ");
     console.log(listTerms)
     if (!(Number.isInteger(parseInt(listTerms[0]))))
-    {
-        console.log("test");
         return false;
-    }
     if (listTerms.length == 1)
         display_val += " + 0";
     if (listTerms[2] == "")
         return false;
     return true;
+}
+
+function answerPressed ()
+{
+    display_val += answer;
+    updateDisplay();
 }
 
 const oneKey = document.getElementById("1");
@@ -155,3 +157,5 @@ minusKey.addEventListener('click', () => getInput("-"));
 
 clearKey.addEventListener('click', () => clearAll());
 equalKey.addEventListener('click', () => calculate());
+
+ansKey.addEventListener('click', () => answerPressed());
